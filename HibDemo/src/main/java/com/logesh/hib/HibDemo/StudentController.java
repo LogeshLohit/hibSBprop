@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 public class StudentController {
 	@Autowired
-	StudentService service;
+	private StudentService service;
 
 	@RequestMapping("students")
 	public void getAllStudents() {
 		System.out.println("here at stu con");
-		 service.findAll();
+		service.findAll();
 	}
+	
 }

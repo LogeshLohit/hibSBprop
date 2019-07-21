@@ -80,6 +80,16 @@ public class AppConfig {
 	private String ENTITYMANAGER_PACKAGES_TO_SCAN;
 
 	@Bean
+	public DataSource dataSource() {
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName(DB_DRIVER);
+		dataSource.setUrl(DB_URL);
+		dataSource.setUsername(DB_USERNAME);
+		dataSource.setPassword(DB_PASSWORD);
+		return dataSource;
+	}
+
+	@Bean
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
@@ -90,16 +100,6 @@ public class AppConfig {
 		hibernateProperties.put("hibernate.hbm2ddl.auto", HIBERNATE_HBM2DDL_AUTO);
 		sessionFactory.setHibernateProperties(hibernateProperties);
 		return sessionFactory;
-	}
-
-	@Bean
-	public DataSource dataSource() {
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName(DB_DRIVER);
-		dataSource.setUrl(DB_URL);
-		dataSource.setUsername(DB_USERNAME);
-		dataSource.setPassword(DB_PASSWORD);
-		return dataSource;
 	}
 
 	@Bean
